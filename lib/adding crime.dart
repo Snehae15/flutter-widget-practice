@@ -1,0 +1,228 @@
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:intl/intl.dart';
+import 'package:location/location.dart' as loc;
+
+class AddCrime extends StatefulWidget {
+  const AddCrime({Key? key}) : super(key: key);
+
+  @override
+  _AddCrimeState createState() => _AddCrimeState();
+}
+
+class _AddCrimeState extends State<AddCrime> {
+  File? image;
+  String selectedCaseType = 'Theft';
+  DateTime selectedDate = DateTime.now();
+  TimeOfDay selectedTime = TimeOfDay.now();
+  TextEditingController descriptionController = TextEditingController();
+  TextEditingController titleController = TextEditingController();
+  TextEditingController locationController = TextEditingController();
+
+  // Future<void> _pickImage(ImageSource source) async {
+  //   try {
+  //     final pickedImage = await ImagePicker().pickImage(source: source);
+  //     if (pickedImage == null) return;
+
+  //     setState(() {
+  //       image = File(pickedImage.path);
+  //     });
+  //   } catch (e) {
+  //     print('Error picking image: $e');
+  //   }
+  // }
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+      });
+    }
+  }
+
+  Future<void> _selectTime(BuildContext context) async {
+    final TimeOfDay? pickedTime = await showTimePicker(
+      context: context,
+      initialTime: selectedTime,
+    );
+
+    if (pickedTime != null && pickedTime != selectedTime) {
+      setState(() {
+        selectedTime = pickedTime;
+      });
+    }
+  }
+
+  Future<void> _selectLocation(BuildContext context) async {
+    try {
+      loc.Location location = loc.Location();
+      loc.LocationData currentLocation = await location.getLocation();
+
+      double latitude = currentLocation.latitude!;
+      double longitude = currentLocation.longitude!;
+
+      List<Placemark> placemarks =
+          await placemarkFromCoordinates(latitude, longitude);
+
+      if (placemarks.isNotEmpty) {
+        Placemark firstPlacemark = placemarks.first;
+        String locationName =
+            "${firstPlacemark.subLocality}, ${firstPlacemark.locality}";
+
+        setState(() {
+          locationController.text = locationName;
+        });
+      } else {
+        setState(() {
+          locationController.text = 'Location not found';
+        });
+      }
+    } catch (e) {
+      print('Error getting location: $e');
+    }
+  }
+
+  Future<void> _submitCrimeReport() async {
+    // Implement your logic for submitting the crime report here
+    // You can access the selected crime type, title, date, time, location, image, and description
+    // For example, you can use FirebaseFirestore to store the data in Firebase Firestore
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Report Crime"),
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            DropdownButtonFormField<String>(
+              value: selectedCaseType,
+              items: [
+                "Theft",
+                "Assault",
+                "Vandalism",
+                // Add more crime types as needed
+              ].map((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+              onChanged: (String? value) {
+                setState(() {
+                  selectedCaseType = value!;
+                });
+              },
+              decoration: const InputDecoration(
+                labelText: "Select Crime Type",
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 12),
+            TextFormField(
+              controller: titleController,
+              decoration: const InputDecoration(
+                labelText: "Crime Title",
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                Expanded(
+                  child: InkWell(
+                    onTap: () => _selectDate(context),
+                    child: Row(
+                      children: const [
+                        Icon(Icons.calendar_today),
+                        SizedBox(width: 8),
+                        Text("Select Date"),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: InkWell(
+                    onTap: () => _selectTime(context),
+                    child: Row(
+                      children: const [
+                        Icon(Icons.access_time),
+                        SizedBox(width: 8),
+                        Text("Select Time"),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    "Selected Date and Time: ${DateFormat.yMd().add_jm().format(selectedDate)}",
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            TextFormField(
+              controller: locationController,
+              decoration: const InputDecoration(
+                labelText: "Crime Location",
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 12),
+            ElevatedButton(
+              onPressed: () => _selectLocation(context),
+              child: Row(
+                children: const [
+                  Icon(Icons.location_on),
+                  SizedBox(width: 8.0),
+                  Text('Select Location'),
+                ],
+              ),
+            ),
+            const SizedBox(height: 12),
+            ElevatedButton(
+              onPressed: () => () {},
+              child: Row(
+                children: const [
+                  Icon(Icons.image),
+                  SizedBox(width: 8.0),
+                  Text('Select Image'),
+                ],
+              ),
+            ),
+            const SizedBox(height: 12),
+            image != null ? Image.file(image!) : const SizedBox(),
+            const SizedBox(height: 12),
+            TextFormField(
+              controller: descriptionController,
+              decoration: const InputDecoration(
+                labelText: "Complaint",
+                border: OutlineInputBorder(),
+              ),
+              maxLines: 4,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
