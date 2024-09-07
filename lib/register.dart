@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart';
-import 'package:work/home.dart';
-import 'package:work/login.dart';
+import 'package:work/practices/home.dart';
+import 'package:work/practices/login.dart';
 
 import 'const.dart';
 

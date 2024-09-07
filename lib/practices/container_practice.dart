@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Baggu extends StatefulWidget {
-  const Baggu({super.key});
+class Container_practice extends StatefulWidget {
+  const Container_practice({super.key});
 
   @override
-  State<Baggu> createState() => _BagguState();
+  State<Container_practice> createState() => _Container_practiceState();
 }
 
-class _BagguState extends State<Baggu> {
+class _Container_practiceState extends State<Container_practice> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

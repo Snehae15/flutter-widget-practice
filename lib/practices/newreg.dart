@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:work/home1.dart';
-import 'home.dart';
+import 'package:work/practices/home1.dart';
+import 'practices/home.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);

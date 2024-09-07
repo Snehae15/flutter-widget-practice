@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 import 'const.dart';
-import 'login.dart';
+import 'practices/login.dart';
 
 class Register1 extends StatefulWidget {
   const Register1({Key? key}) : super(key: key);
@@ -22,18 +22,17 @@ class _Register1State extends State<Register1> {
 
   Future<void> getData() async {
     var data = {
-      "name":name.text,
-      "email":email.text,
-      "mobile":mobile.text,
-      "username":username.text,
-      "password":password.text,
-
+      "name": name.text,
+      "email": email.text,
+      "mobile": mobile.text,
+      "username": username.text,
+      "password": password.text,
     };
-    var response = await post(Uri.parse('${Con.url}reg.php'),body: data);
+    var response = await post(Uri.parse('${Con.url}reg.php'), body: data);
     print(response.body);
-    if(response.statusCode==200){
+    if (response.statusCode == 200) {
       var res = jsonDecode(response.body)["message"];
-      if(res=='Added'){
+      if (res == 'Added') {
         const snackBar = SnackBar(
           content: Text('Successfully Registered'),
         );
@@ -46,12 +45,11 @@ class _Register1State extends State<Register1> {
           },
         ));
       }
-
-    }
-    else {
+    } else {
       // Fluttertoast.showToast(msg: 'Something went wrong!');
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,15 +61,16 @@ class _Register1State extends State<Register1> {
               padding: const EdgeInsets.all(25.0),
               child: Center(
                   child: Text(
-                    'Register',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  )),
+                'Register',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              )),
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: TextFormField(
                 controller: name,
-                decoration: InputDecoration(border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
                   hintText: 'name',
                   labelText: 'Enter your name',
                 ),
@@ -81,7 +80,8 @@ class _Register1State extends State<Register1> {
               padding: const EdgeInsets.all(10.0),
               child: TextFormField(
                 controller: email,
-                decoration: InputDecoration(border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
                   hintText: 'email',
                   labelText: 'Enter your email',
                 ),
@@ -91,7 +91,8 @@ class _Register1State extends State<Register1> {
               padding: const EdgeInsets.all(10.0),
               child: TextFormField(
                 controller: mobile,
-                decoration: InputDecoration(border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
                   hintText: 'mobile',
                   labelText: 'Enter your mobile',
                 ),
@@ -101,7 +102,8 @@ class _Register1State extends State<Register1> {
               padding: const EdgeInsets.all(10.0),
               child: TextFormField(
                 controller: username,
-                decoration: InputDecoration(border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
                   hintText: 'username',
                   labelText: 'Enter your username',
                 ),
@@ -111,7 +113,8 @@ class _Register1State extends State<Register1> {
               padding: const EdgeInsets.all(10.0),
               child: TextFormField(
                 controller: password,
-                decoration: InputDecoration(border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
                   hintText: 'Password',
                   labelText: 'Enter your password',
                 ),
@@ -134,7 +137,8 @@ class _Register1State extends State<Register1> {
                   ),
                 ),
                 decoration: BoxDecoration(
-                    color: Colors.blue, borderRadius: BorderRadius.circular(50)),
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(50)),
               ),
             )
           ],

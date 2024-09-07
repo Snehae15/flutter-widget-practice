@@ -12,11 +12,10 @@ class Home1 extends StatefulWidget {
 }
 
 class _Home1State extends State<Home1> {
-  int currentindex=0;
-  final pages=[
+  int currentindex = 0;
+  final pages = [
     Home2(),
     Editpro(),
-
   ];
 
   @override
@@ -29,23 +28,23 @@ class _Home1State extends State<Home1> {
       body: pages[currentindex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentindex,
-        onTap: (newIndex){
+        onTap: (newIndex) {
           setState(() {
-            currentindex=newIndex;
+            currentindex = newIndex;
           });
         },
         items: [
-          BottomNavigationBarItem(icon: Icon(
-            Icons.home,
-          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+            ),
             label: "home",
           ),
-          BottomNavigationBarItem(icon: Icon(
-            Icons.person,
-          ),
-              label: "profile"
-          ),
-
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.person,
+              ),
+              label: "profile"),
         ],
       ),
     );

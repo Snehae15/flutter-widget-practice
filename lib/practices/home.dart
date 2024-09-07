@@ -4,7 +4,6 @@ import 'package:work/register.dart';
 
 import 'login.dart';
 
-
 class Connection extends StatefulWidget {
   const Connection({Key? key}) : super(key: key);
 
@@ -20,23 +19,20 @@ class _ConnectionState extends State<Connection> {
         title: Text("Home page"),
         centerTitle: true,
         leading: Icon(Icons.home),
-        actions: [IconButton(onPressed: (){}, icon: Icon(Icons.search),),
-        Icon(Icons.more_vert),],
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.search),
+          ),
+          Icon(Icons.more_vert),
+        ],
       ),
-      bottomNavigationBar: BottomNavigationBar(items: [
-        BottomNavigationBarItem(icon: Icon(Icons.person
-        ),
-            label: "Contact"
-        ),
-        BottomNavigationBarItem(icon: Icon(Icons.home
-        ),
-            label: "Chats"
-        ),
-        BottomNavigationBarItem(icon: Icon(Icons.message
-        ),
-            label: "Home"
-        ),
-      ],
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Contact"),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Chats"),
+          BottomNavigationBarItem(icon: Icon(Icons.message), label: "Home"),
+        ],
       ),
       body: ListView(
         children: [
@@ -44,11 +40,10 @@ class _ConnectionState extends State<Connection> {
             child: ListTile(
               title: Text("Login"),
               tileColor: Colors.blueGrey,
-              trailing: Icon(
-                  Icons.arrow_forward_ios
-              ),
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>Log()));
+              trailing: Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Log()));
               },
             ),
           ),
@@ -56,11 +51,10 @@ class _ConnectionState extends State<Connection> {
             child: ListTile(
               title: Text("Registration"),
               tileColor: Colors.blue,
-              trailing: Icon(
-                  Icons.arrow_forward_ios
-              ),
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>Reg()));
+              trailing: Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Reg()));
               },
             ),
           ),
@@ -68,15 +62,11 @@ class _ConnectionState extends State<Connection> {
             child: ListTile(
               title: Text("number 2"),
               tileColor: Colors.amber,
-              trailing: Icon(
-                  Icons.arrow_forward_ios
-              ),
+              trailing: Icon(Icons.arrow_forward_ios),
             ),
           ),
         ],
       ),
-
     );
   }
 }
-

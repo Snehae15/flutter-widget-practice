@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:work/login.dart';
-
+import 'package:work/practices/login.dart';
 
 class Home2 extends StatefulWidget {
   const Home2({Key? key}) : super(key: key);
@@ -29,8 +28,9 @@ class _Home2State extends State<Home2> {
                 trailing: Icon(
                   Icons.arrow_forward_ios,
                 ),
-                onTap: (){
-                  Navigator.push(context,MaterialPageRoute(builder: (context)=>Log()));
+                onTap: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => Log()));
                 },
               ),
             ),
@@ -44,8 +44,9 @@ class _Home2State extends State<Home2> {
                 trailing: Icon(
                   Icons.arrow_forward_ios,
                 ),
-                onTap: (){
-                  Navigator.push(context,MaterialPageRoute(builder: (context)=>Log()));
+                onTap: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => Log()));
                 },
               ),
             ),
@@ -59,8 +60,8 @@ class _Home2State extends State<Home2> {
                 trailing: Icon(
                   Icons.arrow_forward_ios,
                 ),
-                onTap: (){
-                //  Navigator.push(context,MaterialPageRoute(builder: (context)=>Login()));
+                onTap: () {
+                  //  Navigator.push(context,MaterialPageRoute(builder: (context)=>Login()));
                 },
               ),
             ),
