@@ -6,7 +6,7 @@ import 'package:http/http.dart';
 import 'package:work/reg.dart';
 import 'package:work/viewnotification.dart';
 
-import 'const.dart';
+import '../const.dart';
 
 class Log extends StatefulWidget {
   const Log({Key? key}) : super(key: key);
