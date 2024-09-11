@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:work/practices/textfieldwithboxshadow.dart';
 import 'package:work/restapi/countries.dart';
 import 'package:work/restapi/dogapi.dart';
 import 'package:work/restapi/random10catapi.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: TextFieldExample(),
+      home: TextFieldWithShadow(),
     );
   }
 }
