@@ -184,17 +184,12 @@ class _StudentRegisterState extends State<StudentRegister> {
 
   void _submitForm() {
     if (formkey.currentState!.validate()) {
-      // Form is valid, proceed with form submission
-      // Access form field values
       final String nameValue = name.text;
       final String departmentValue = department.text;
       final String registerNoValue = registerno.text;
       final String phoneValue = phone.text;
       final String emailValue = email.text;
       final String passwordValue = password.text;
-
-      // Here, you can process the form data as needed
-      // For demonstration, let's show a toast message
     }
   }
 }
