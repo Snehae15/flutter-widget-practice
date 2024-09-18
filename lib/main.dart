@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:work/practices/bgimgage.dart';
+import 'package:work/practices/reg.dart';
+import 'package:work/practices/register2.dart';
+import 'package:work/practices/textfieldhinttext_center.dart';
 import 'package:work/practices/textfieldwithboxshadow.dart';
 import 'package:work/restapi/countries.dart';
 import 'package:work/restapi/dogapi.dart';
@@ -27,7 +30,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: BackgroundImageWidget(),
+      home: RegistrationScreen(),
     );
   }
 }
